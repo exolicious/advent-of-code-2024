@@ -1,8 +1,3 @@
-
-
-import sys
-
-
 input = """SSSSSOOOOOBFFJJFTFBBBBBBBBPPPPPPPPBBBBBBBBBBBSSDDDDDDCCCCCCCCCCCUUUUUAAAAAAAAAAAAAAAUUUUUUUUUUUUUUUUUUUUUUDDDDDDMMMMMZZFFZZFFFFFFFFFFFFFFFII
 SSSOOOOOFFFFFFJFFFFBBBBBBBPPPPPPPPPBBBBBBBBBSSSSSSSSDDCCCCCCCCCUUUUUUUUAAAAAAAAAAAAAUUUUUUUUUUUUUUUUUUUUUUUDDDDDMMMMZZZZFZZFFFFFFFFFFFFFFFII
 OOSOOOOOFFFFFFJFFFFBBBBBBPPPPPPPPPPBBBBBBBBBBSSSSSSSDCCCCCCCCUUUUUUUUUUUUAAAAAAAAAAUUUUUUUUUUUUUUUUUUUUUUDDDDDDDDDDZZZZZZZFFFFFFFFFFFFFFFFII
@@ -151,7 +146,6 @@ class Node:
     right: 'Node'
     bottom: 'Node'
     visited: bool
-
     def __init__(self, plant: str, left: 'Node', top: 'Node', right: 'Node', bottom: 'Node'):
         self.plant = plant
         self.left = left
@@ -159,12 +153,10 @@ class Node:
         self.right = right
         self.bottom = bottom
         self.visited = False
-
     def __str__(self):
         return f"|{self.plant}|"
-
+    
 plants_rows = input.split("\n")
-#init empty node matrix
 node_matrix = [[Node("", None, None, None, None) for _ in range(len(plants_rows[0]))] for _ in range(len(plants_rows))]
 for i in range(len(plants_rows)):
     for j in range(len(plants_rows[i])):
@@ -180,6 +172,7 @@ for i in range(len(plants_rows)):
         current_node.plant = plants_rows[i][j]
         current_node.top = top
         current_node.left = left
+
 res = 0
 for k in range(len(node_matrix)):
     for l in range(len(node_matrix[k])):
@@ -215,6 +208,4 @@ for k in range(len(node_matrix)):
                 current_node.bottom.visited = True
         res += area * perimeter
             
-
-        
 print(res)
